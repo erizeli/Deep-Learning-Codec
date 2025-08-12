@@ -34,9 +34,10 @@
 
 # server.py
 import socket
+#import tts_processing
 
-HOST = '0.0.0.0'  # Accept connections from any IP
-PORT = 5001       # Port number
+HOST: str = "0.0.0.0"
+PORT: int = 5001
 
 server = socket.socket()
 server.bind((HOST, PORT))
@@ -47,14 +48,21 @@ print(f"[SERVER] Listening on port {PORT}...")
 conn, addr = server.accept()
 print(f"[SERVER] Connected by {addr}")
 
-filename = 'received_file.bin'
-with open(filename, 'wb') as f:
-    while True:
-        data = conn.recv(4096)
-        if not data:
-            break
-        f.write(data)
+received_chunks = []
+while True:
+    data = conn.recv(4096)
+    if not data:
+        break
+    # Decode the received bytes to string and append
+    received_chunks.append(data.decode('utf-8'))
 
-print(f"[SERVER] File received and saved as {filename}")
+# Combine all chunks into one string
+full_message = ''.join(received_chunks)
+
+print(f"[SERVER] Full message received:\n{full_message}")
+
 conn.close()
 server.close()
+
+#tts_processing.process_rsp(full_message)
+
