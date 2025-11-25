@@ -1,3 +1,5 @@
+# records user input stream, returns raw audio in int array form
+
 import pyaudio
 import keyboard
 from scipy.io.wavfile import write

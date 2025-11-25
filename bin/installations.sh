@@ -6,3 +6,4 @@ pip install keyboard
 pip install torch
 pip install -U openai-whisper
 pip install pyaudio
+pip install TTS
