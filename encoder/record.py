@@ -2,9 +2,8 @@ import pyaudio
 import keyboard
 from scipy.io.wavfile import write
 import numpy as np
-import json
 
-def recordWAV():
+def record():
     format = pyaudio.paInt16
     chunk = 1024
     channels = 1
@@ -36,18 +35,6 @@ def recordWAV():
     # Convert to int16 NumPy array
     samples = np.frombuffer(all_bytes, dtype=np.int16)  # shape: (num_samples,)
 
-    write("initial_audio.wav", 16000, samples)
+    write("audiofiles/initial_audio.wav", 16000, samples)
     return samples
-
-
-
-def convert_json(to: str, data):
-    pack = {
-            "to": to,
-            "vdata": data
-        }
-
-
-    json_pack = json.dumps(pack)
-    return json_pack
 
