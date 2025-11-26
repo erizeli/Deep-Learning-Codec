@@ -24,4 +24,6 @@ def receive_packet() -> str:
 #tts_processing.process_rsp(full_message)
 
 if __name__ == "__main__":
-    msg = listen()
+    packet = receive_packet()
+    text = packet["text"]
+    print("[DEBUG] Message Received: \"{text}\"")

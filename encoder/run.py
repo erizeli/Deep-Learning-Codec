@@ -1,5 +1,5 @@
 from record import record
-from stt_processing import record_msg
+from stt_processing import process_msg
 from packetize import packetize
 from send_packet import send_packet
 
